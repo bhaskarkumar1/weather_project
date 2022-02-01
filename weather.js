@@ -21,13 +21,23 @@ https.get(url,function(response){
   const  WeatherData =JSON.parse(data);
     // console.log(WeatherData);
     const temp =WeatherData.main.temp
-    console.log(temp);
+    const WeatherDescription= WeatherData.weather[0].description
+    const icon= WeatherData.weather[0].icon
+    const imageUrl="https://openweathermap.org/img/wn/"+icon+"@2x.png"
+
+    // console.log(temp + WeatherDescription);
+
+    res.write("<p>the weather is currently "+WeatherDescription +" </p>");
+    res.write("<h1>the temperature in london is "+temp+" degree celsius</h1>");
+    res.write("<img src="+imageUrl+">");
+    res.send()
+
   });
 
 })
 
 
-  res.send("hello world");
+  // res.send("hello world");
 });
 
 
